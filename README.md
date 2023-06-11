@@ -1,5 +1,5 @@
 # MyToyMvc 
--- todo toy project 연습 
+- todo toy project 연습 
 
 # Spring boot 프로젝트 설정
 
@@ -32,5 +32,5 @@
 - 프로젝트는 Maven 중앙 저장소에서 의존성을 검색합니다.
 
 ## How can you using this project ? 
-- 프로젝트 build 후 RunApplication 
+- 프로젝트 build 후 RunApplication 후
 - /todo/list 검색 
