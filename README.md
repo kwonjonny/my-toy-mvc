@@ -22,6 +22,8 @@
 - `org.springframework.boot:spring-boot-starter-test`: Spring Boot 기반 애플리케이션 테스트를 위한 의존성을 추가합니다.
 - `org.springframework.security:spring-security-test`: Spring Security와 함께 사용할 수 있는 테스트 유틸리티를 추가합니다.
 - `org.springframework.boot:spring-boot-starter-security`: Spring Security를 쉽게 사용할 수 있도록 도와주는 Spring Boot 스타터를 추가합니다.
+- `org.springframework.boot:spring-boot-starter-thymeleaf`: Thymeleaf 템플릿 엔진을 Spring Boot 프로젝트에 통합하는데 필요한 기본적인 의존성을 제공합니다. Thymeleaf는 HTML, XML, JavaScript, CSS 등과 같은 텍스트 기반 템플릿을 처리하는데 사용됩니다. Spring Boot와 함께 사용할 때, Thymeleaf는 웹 페이지를 구성하는데 유용한 방법을 제공하며, 서버 사이드에서 Java 객체를 HTML로 쉽게 렌더링 할 수 있습니다.
+- `nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0`: Thymeleaf Layout Dialect는 Thymeleaf 템플릿 엔진에 레이아웃 기능을 추가하는 라이브러리입니다. 이를 사용하여 템플릿을 재사용하고, 웹 페이지의 중복된 부분(예: 헤더, 푸터)을 효율적으로 관리할 수 있습니다. Layout Dialect를 사용하면, 웹 애플리케이션의 유지 보수가 더 쉬워집니다.
 
 ## 태스크 설정
 - `test` 태스크가 JUnit Platform을 사용하도록 설정되어 있습니다.
