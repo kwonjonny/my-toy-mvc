@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/lteLayout.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Todo List Page</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Bordered Table</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+            <table class="table table-bordered todoTable">
+                <thead>
+                <tr>
+                    <th style="width: 10px">no</th>
+                    <th>title</th>
+                    <th>writer</th>
+                    <th style="width: 40px">Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="todo :${pageResponseDTO.list}">
+                    <td class="todoTD" th:data-tno="${todo.tno}">[[${todo.tno}]]</td>
+                    <td>[[${todo.title}]]</td>
+                    <td>[[${todo.writer}]]</td>
+                    <td><span class="badge bg-danger">[[${todo.dueDate}]]</span></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right todoUL">
+                <li class="page-item"><a class="page-link" href="10">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="11">12</a></li>
+                <li class="page-item"><a class="page-link" href="12">12</a></li>
+                <li class="page-item"><a class="page-link" href="13">13</a></li>
+                <li class="page-item"><a class="page-link" href="21">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.card -->
+
+    <form class ="actionForm" action = "/todo/list" method = "get">
+
+        <input type="hidden" name="page" th:value = "${pageRequestDTO.page}">
+        <!-- 어느 페이지를 가든 size는 유지  -->
+        <input type="hidden" name="size" th:value = "${pageRequestDTO.size}">
+        <!-- keyword -->
+        <!-- SearchType 1페이지로 가야 함 -->
+    </form>
+
+
+    <script src = "/js/pageUtil.js">
+
+    </script>
+
+</div>
+
+<script layout:fragment ="script" th:inline = "javascript">
+
+
+
+    const actionForm = document.querySelector(".actionForm")
+    const pageObj = actionForm.querySelector("input[name='page']") // input 태그에 name이 page인 값을 찾음
+    const todoUL = document.querySelector(".todoUL")
+
+    todoUL.addEventListener("click",(e) => {
+
+      // 이벤트 시 필수
+      e.preventDefault()
+      e.stopPropagation()
+
+      const target = e.target
+      const pageNum = target.getAttribute("href")
+
+      pageObj.value = pageNum
+      actionForm.setAttribute("action", `/todo/list`)
+      actionForm.submit()
+
+      console.log(e)
+
+    }, false)// 캡쳐링 금지
+
+    // setTimeout(() => {
+
+    //   // => http://localhost:8080/todo/read/33?page=3&size=10
+    //   // => read페이지에서 목록버튼누르면 페이지, 검색조건을 유지해야한다.
+    //   actionForm.setAttribute("action","/todo/read/33")
+
+    //   // pageObj.value = 5
+
+    //   // actionForm.submit()
+    // },3000)
+
+    const{page,size} = [[${pageRequestDTO}]]
+
+    const{total} = [[${pageResponseDTO}]]
+
+
+    const pageLiStr = makePages(page,size,total)
+    todoUL.innerHTML = pageLiStr
+
+    const todoTable = document.querySelector(".todoTable")
+    todoTable.addEventListener("click",(e)=>{
+
+      const target = e.target
+
+      if(!target.getAttribute("data-tno")){
+        return
+      }
+
+      const tno = target.getAttribute("data-tno")
+
+      console.log("TNO : " + tno)
+
+      actionForm.setAttribute("action",`/todo/read/${tno}`)
+
+      actionForm.submit()
+
+    },false)
+
+  </script>
+
+</body>
+</html>

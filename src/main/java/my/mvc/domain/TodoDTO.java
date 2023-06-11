@@ -2,17 +2,19 @@ package my.mvc.domain;
 
 import lombok.*;
 
-import java.sql.Date;
 
 @Getter
 @Setter
+@Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class TodoDTO {
-    private int tno;
+    private long tno;
     private String title;
     private String writer;
+    private String content;
+    private String dueDate;
     private boolean complete;
-    private Date date;
+
 }
