@@ -19,6 +19,7 @@ public class TodoServiceImpl implements TodoService{
         this.todoMapper = todoMapper;
     }
 
+    // List ServiceImpl
     @Override
     public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
 
@@ -29,5 +30,11 @@ public class TodoServiceImpl implements TodoService{
                 .list(list)
                 .total(total)
                 .build();
+    }
+
+    // read ServiceImpl
+    @Override
+    public TodoDTO read(long tno) {
+        return todoMapper.read(tno);
     }
 }

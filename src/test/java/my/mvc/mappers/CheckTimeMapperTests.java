@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
+// TimeCheck 를 확인하기 위한 Test class
 @Log4j2
 @SpringBootTest
 public class CheckTimeMapperTests {

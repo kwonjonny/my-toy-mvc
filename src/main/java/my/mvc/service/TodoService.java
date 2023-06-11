@@ -8,5 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface TodoService {
 
+    // List Service
     PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
+
+    // read Service
+    TodoDTO read(long tno);
+
+
 }

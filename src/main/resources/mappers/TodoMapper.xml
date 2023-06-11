@@ -14,6 +14,12 @@
         </selectKey>
     </insert>
 
+    <!-- TodoMapper id = read -->
+    <select id="read" parameterType="long" resultType="my.mvc.domain.TodoDTO">
+        select tno, title, content, writer, dueDate from tbl_todo
+        where tno = #{tno}
+    </select>
+
     <!-- TodoMapper id = list -->
     <select id="list" resultType="my.mvc.domain.TodoDTO">
         select * from tbl_todo
@@ -35,5 +41,7 @@
         delete from tbl_todo
         where tno = #{tno}
     </delete>
+
+
 
 </mapper>

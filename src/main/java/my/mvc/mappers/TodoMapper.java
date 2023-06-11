@@ -16,6 +16,6 @@ public interface TodoMapper {
 
     int delete(long tno);
 
-    int update(TodoDTO todoDTO);
+    TodoDTO read(long tno);
 
 }
