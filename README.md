@@ -104,3 +104,6 @@ CREATE TABLE tbl_todo(
     dueDate DATE
 );
 
+## TMI 
+- 반박시 your 말이 맞음 
+
