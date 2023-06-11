@@ -5,8 +5,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- title 제목  -->
+    <title>Todo List Page</title>
+
 </head>
+
 <body>
 <div layout:fragment="content">
     <h1>Todo List Page</h1>
@@ -18,50 +21,55 @@
         <!-- /.card-header -->
         <div class="card-body">
 
+            <div class="page-size-selector">
+                <label for="pageSize">10개 20개 30개 씩 보기:</label>
+                <select id="pageSize" name="size" onchange="changePageSize(this.value)">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                </select>
+            </div>
+
             <table class="table table-bordered todoTable">
                 <thead>
                 <tr>
-                    <th style="width: 10px">no</th>
+                    <th>no</th>
                     <th>title</th>
                     <th>writer</th>
-                    <th style="width: 40px">Date</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="todo :${pageResponseDTO.list}">
-                    <td class="todoTD" th:data-tno="${todo.tno}">[[${todo.tno}]]</td>
+                    <td class="todoDTO" th:data-tno="${todo.tno}">[[${todo.tno}]]</td>
                     <td>[[${todo.title}]]</td>
                     <td>[[${todo.writer}]]</td>
-                    <td><span class="badge bg-danger">[[${todo.dueDate}]]</span></td>
+                    <td>[[${todo.dueDate}]]</td>
                 </tr>
-
-
                 </tbody>
             </table>
         </div>
-        <!-- /.card-body -->
+
+        <!-- 페이징 버튼 -->
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-right todoUL">
-                <li class="page-item"><a class="page-link" href="10">&laquo;</a></li>
-                <li class="page-item"><a class="page-link" href="11">12</a></li>
-                <li class="page-item"><a class="page-link" href="12">12</a></li>
-                <li class="page-item"><a class="page-link" href="13">13</a></li>
-                <li class="page-item"><a class="page-link" href="21">&raquo;</a></li>
             </ul>
         </div>
-    </div>
-    <!-- /.card -->
 
+    </div>
+
+    <!-- page 와 size -->
     <form class ="actionForm" action = "/todo/list" method = "get">
 
         <input type="hidden" name="page" th:value = "${pageRequestDTO.page}">
-        <!-- 어느 페이지를 가든 size는 유지  -->
+        <!-- 어느 페이지를 가든 size 는 유지  -->
         <input type="hidden" name="size" th:value = "${pageRequestDTO.size}">
         <!-- keyword -->
         <!-- SearchType 1페이지로 가야 함 -->
     </form>
 
 
+    <!-- paging 계산 자바스크립트 링크 -->
     <script src = "/js/pageUtil.js">
 
     </script>
@@ -70,67 +78,82 @@
 
 <script layout:fragment ="script" th:inline = "javascript">
 
-
-
+    // actionForm 요소를 가져온다
     const actionForm = document.querySelector(".actionForm")
+
+    // 페이지 번호를 전달하는 input 요소를 가져온다
     const pageObj = actionForm.querySelector("input[name='page']") // input 태그에 name이 page인 값을 찾음
+
+    // 페이지네이션을 나타내는 ul 요소를 가져온다
     const todoUL = document.querySelector(".todoUL")
 
+    // todoUl 요소에 클릭 이벤트 리스너를 추가
     todoUL.addEventListener("click",(e) => {
 
-      // 이벤트 시 필수
+      // 이벤트의 기본 동작을 취소
       e.preventDefault()
       e.stopPropagation()
 
+      // 클릭된 요소와 href 속성을 가져온다
       const target = e.target
       const pageNum = target.getAttribute("href")
 
+      // 페이지 번호를 설정
       pageObj.value = pageNum
+
+      // action 속성을 수정후 폼을 제출
       actionForm.setAttribute("action", `/todo/list`)
       actionForm.submit()
 
+      // 로그 출력
       console.log(e)
 
     }, false)// 캡쳐링 금지
 
-    // setTimeout(() => {
-
-    //   // => http://localhost:8080/todo/read/33?page=3&size=10
-    //   // => read페이지에서 목록버튼누르면 페이지, 검색조건을 유지해야한다.
-    //   actionForm.setAttribute("action","/todo/read/33")
-
-    //   // pageObj.value = 5
-
-    //   // actionForm.submit()
-    // },3000)
-
+    // pageRequestDTO 와 pageResponseDTO 에서 필요한 데이터를 추출
     const{page,size} = [[${pageRequestDTO}]]
-
     const{total} = [[${pageResponseDTO}]]
 
-
+    // 페이지네이션 HTML 문자열을 생성
     const pageLiStr = makePages(page,size,total)
+
+    // 페이지네이션을 toUL 요소에 할당
     todoUL.innerHTML = pageLiStr
 
+    // todoTable 요소에 클릭 이벤트 리스너를 추가
     const todoTable = document.querySelector(".todoTable")
     todoTable.addEventListener("click",(e)=>{
 
       const target = e.target
 
+      // data-tno 속성을 가진 요소만을 처리
       if(!target.getAttribute("data-tno")){
         return
       }
 
+      // tno 값을 가져와서 action 속성을 수정하고 폼 제출
       const tno = target.getAttribute("data-tno")
-
+      // 로그 출력
       console.log("TNO : " + tno)
-
       actionForm.setAttribute("action",`/todo/read/${tno}`)
-
       actionForm.submit()
+    },false) // 캡쳐링 금지
 
-    },false)
+// 10개씩 20개씩 30개씩 보기
+function changePageSize(size) {
+    const actionForm = document.querySelector(".actionForm");
+    const sizeInput = actionForm.querySelector("input[name='size']");
 
+    sizeInput.value = size;
+
+    // 페이지 사이즈가 변경될 때마다 1페이지로 돌아가도록 설정
+    const pageInput = actionForm.querySelector("input[name='page']");
+    pageInput.value = 1;
+
+    // action 속성을 수정후 폼을 제출
+    actionForm.setAttribute("action", `/todo/list`);
+    actionForm.submit();
+}
   </script>
 
 </body>
