@@ -14,18 +14,6 @@
 - `version`: 프로젝트 버전을 '0.0.1-SNAPSHOT'으로 설정합니다.
 - `sourceCompatibility`: 프로젝트 Java 버전을 17로 설정합니다.
 
-### 의존성
-- `org.springframework.boot:spring-boot-starter-web`: Spring Boot 웹 응용 프로그램 개발에 필요한 기본 의존성입니다.
-- `org.mybatis.spring.boot:mybatis-spring-boot-starter`: MyBatis와 Spring Boot를 통합하는 데 사용됩니다.
-- `org.springframework.boot:spring-boot-devtools`: 개발 시 유용한 추가 도구를 제공합니다.
-- `com.mysql:mysql-connector-j`: MySQL 데이터베이스와 연결하는 JDBC 드라이버입니다.
-- `org.projectlombok:lombok`: 코드 간소화를 위한 라이브러리입니다.
-- `org.springframework.boot:spring-boot-starter-test`: 테스트를 위한 의존성입니다.
-- `org.springframework.security:spring-security-test`: Spring Security 테스트 유틸리티입니다.
-- `org.springframework.boot:spring-boot-starter-security`: Spring Security를 쉽게 사용하도록 도와줍니다.
-- `org.springframework.boot:spring-boot-starter-thymeleaf`: Thymeleaf 템플릿 엔진을 통합합니다.
-- `nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0`: Thymeleaf 레이아웃 기능을 추가합니다.
-
 ### 태스크 설정
 - `test`: JUnit Platform을 사용하도록 설정합니다.
 
