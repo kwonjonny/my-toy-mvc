@@ -1,5 +1,6 @@
 # MyToyMvc 
-- todo toy project 연습 
+- todo toy project 
+- 목표 : JavaScript Thymleaf Springboot 를 활용한 페이지네이션 todo 
 
 # Spring boot 프로젝트 설정
 
