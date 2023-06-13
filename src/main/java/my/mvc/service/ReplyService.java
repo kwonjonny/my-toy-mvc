@@ -5,7 +5,7 @@ import my.mvc.domain.PageResponseDTO;
 import my.mvc.domain.ReplyDTO;
 import org.springframework.transaction.annotation.Transactional;
 
-// ReplyService
+// ReplyService interface
 @Transactional
 public interface ReplyService {
 
@@ -17,4 +17,5 @@ public interface ReplyService {
     // 특정한 tno 의 댓글이 몇갠지 세는 로직 필요
     PageResponseDTO<ReplyDTO> getList(Long tno, PageRequestDTO pageRequestDTO);
 
+    ReplyDTO getOne(Long tno);
 }

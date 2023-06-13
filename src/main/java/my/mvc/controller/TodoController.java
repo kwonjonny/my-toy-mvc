@@ -32,10 +32,4 @@ public class TodoController {
         model.addAttribute("pageResponseDTO", pageResponseDTO);
     }
 
-    // get : read
-    @GetMapping("read/{tno}")
-    public void read(@PathVariable("tno") long tno, Model model) {
-        TodoDTO readTno = todoService.read(tno);
-        model.addAttribute("readTno" , readTno);
-    }
 }

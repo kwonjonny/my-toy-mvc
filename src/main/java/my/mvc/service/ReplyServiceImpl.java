@@ -59,4 +59,10 @@ public class ReplyServiceImpl implements ReplyService {
                 .total(total)
                 .build();
     }
+
+    // getOnce ServiceImpl
+    @Override
+    public ReplyDTO getOne(Long rno) {
+        return replyMapper.selectOne(rno);
+    }
 }
