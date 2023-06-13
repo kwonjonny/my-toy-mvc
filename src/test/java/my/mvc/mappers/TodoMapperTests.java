@@ -19,15 +19,9 @@ import java.util.Random;
 @SpringBootTest
 public class TodoMapperTests {
 
+    // TodoMapper Crud 확인을 위한 interface 의존성 주입
     @Autowired
     private TodoMapper todoMapper;
-
-    private static Random random;
-
-    @BeforeAll
-    static void setUp() {
-        random = new Random();
-    }
 
     // List Test
     @Test
