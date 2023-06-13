@@ -89,6 +89,16 @@
 | complete | TINYINT        | Todo 항목의 상태 (기본값 0, 완료 시 1)          |
 | dueDate  | DATE           | Todo 항목의 마감 날짜                        |
 
+### Todo 테이블 (`tbl_reply2`)
+| 컬럼명   | 데이터 타입     | 설명                                       |
+|----------|----------------|--------------------------------------------|
+| rno      | INT            | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
+| tno    | VARCHAR(500)   | 관련 Todo 항목의 고유 식별자                |
+| reply  | VARCHAR(1000)  | 답글의 내용           |
+| replyer   | VARCHAR(100)   | 답글을 작성한 사용자명     |
+| replyDate | TIMESTMAP        | 답글이 작성된 날짜와 시간 (기본값은 현재 시간)          |
+| gno  | int           | 그룹 번호 (기본값 0)                       |
+
 
 ### Todo 테이블 (`tbl_reply2`)
 
