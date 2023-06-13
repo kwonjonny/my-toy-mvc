@@ -89,8 +89,11 @@
 | complete | TINYINT        | Todo 항목의 상태 (기본값 0, 완료 시 1)          |
 | dueDate  | DATE           | Todo 항목의 마감 날짜                        |
 
-SQL 스키마:
 
+### Todo 테이블 (`tbl_reply2`)
+
+
+SQL 스키마:
 ```sql
 CREATE TABLE tbl_todo(
     tno INT AUTO_INCREMENT PRIMARY KEY,
@@ -100,5 +103,15 @@ CREATE TABLE tbl_todo(
     complete TINYINT DEFAULT 0,
     dueDate DATE
 );
+
+CREATE TABLE tbl_reply2 (
+    rno INT AUTO_INCREMENT PRIMARY KEY,
+    tno INT NOT NULL,
+    reply VARCHAR(1000) NOT NULL,
+    replyer VARCHAR(100) NOT NULL,
+    replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    gno int default 0 
+);
 ```
+
 
