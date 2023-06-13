@@ -1,7 +1,7 @@
 # MyToyMvc
 - 프로젝트 유형: Todo Toy Project
 - 목표: JavaScript, Thymeleaf, Spring Boot를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발 과 reply 댓글, 대댓글 개발 
-- 목표2: 개발의 순서 정립 MapperInterface 개발 => MapperXml 개발 => TestCode 작성 
+- 목표: 개발의 순서 정립 MapperInterface 개발 => MapperXml 개발 => TestCode 작성 
 
 ## Spring Boot 프로젝트 설정
 
