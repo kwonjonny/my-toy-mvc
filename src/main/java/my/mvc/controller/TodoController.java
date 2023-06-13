@@ -20,7 +20,7 @@ public class TodoController {
     // TodoService interface 인스턴스 변수 정의
     private final TodoService todoService;
 
-    // 생성자 의존성 주입
+    // TodoService 의존성 주입 
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }

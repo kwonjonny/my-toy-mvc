@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// TodoServiceImpl
 @Log4j2
 @Service
 public class TodoServiceImpl implements TodoService{
 
+    // TodoMapper 인스턴스 변수 정의
     private final TodoMapper todoMapper;
 
+    // TodoMapper 의존성 주입
     public TodoServiceImpl(TodoMapper todoMapper) {
         this.todoMapper = todoMapper;
     }

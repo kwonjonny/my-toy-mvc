@@ -2,10 +2,12 @@ package my.mvc.domain;
 
 import java.util.List;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 // 제네릭 타입 <E> 를 사용해서 다양한 타입의 데이터 목록을 지정
-@Data
+@Getter
+@Setter
 public class PageResponseDTO<E> {
 
     // 페이지당 항목들의 목록 저장
