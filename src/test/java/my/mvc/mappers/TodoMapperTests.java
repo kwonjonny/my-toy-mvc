@@ -109,8 +109,6 @@ public class TodoMapperTests {
     @Transactional
     public void testDelete() {
         // THEN
-       todoMapper.delete(1);
+        todoMapper.delete(1);
     }
-
-
 }
