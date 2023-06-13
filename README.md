@@ -1,6 +1,7 @@
 # MyToyMvc
 - 프로젝트 유형: Todo Toy Project
-- 목표: JavaScript, Thymeleaf, Spring Boot를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발
+- 목표: JavaScript, Thymeleaf, Spring Boot, Ajax 를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발 과 reply 댓글, 대댓글 개발 
+- 목표: 개발의 순서 정립 MapperInterface 개발 => MapperXml 개발 => MapperTestCode 작성 => ServiceInterface 개발 => ServiceImpl 개발 => ServiceTestCode 작성 
 
 ## Spring Boot 프로젝트 설정
 
@@ -37,6 +38,9 @@
 - Todo 항목 생성, 조회, 수정, 삭제
 - 페이지네이션 지원
 - Todo 항목 필터링 및 정렬 기능
+
+- Reply 항목 생성, 조회, 수정, 삭제 
+- 댓글 과 대댓글 페이지네이션 지원 
 - Bootstrap을 이용한 반응형 웹 디자인
 
 ## 시작하기
@@ -86,8 +90,21 @@
 | complete | TINYINT        | Todo 항목의 상태 (기본값 0, 완료 시 1)          |
 | dueDate  | DATE           | Todo 항목의 마감 날짜                        |
 
-SQL 스키마:
+### Todo 테이블 (`tbl_reply2`)
+| 컬럼명   | 데이터 타입     | 설명                                       |
+|----------|----------------|--------------------------------------------|
+| rno      | INT            | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
+| tno    | VARCHAR(500)   | 관련 Todo 항목의 고유 식별자                |
+| reply  | VARCHAR(1000)  | 답글의 내용           |
+| replyer   | VARCHAR(100)   | 답글을 작성한 사용자명     |
+| replyDate | TIMESTMAP        | 답글이 작성된 날짜와 시간 (기본값은 현재 시간)          |
+| gno  | int           | 그룹 번호 (기본값 0)                       |
 
+
+### Todo 테이블 (`tbl_reply2`)
+
+
+SQL 스키마:
 ```sql
 CREATE TABLE tbl_todo(
     tno INT AUTO_INCREMENT PRIMARY KEY,
@@ -97,5 +114,15 @@ CREATE TABLE tbl_todo(
     complete TINYINT DEFAULT 0,
     dueDate DATE
 );
+
+CREATE TABLE tbl_reply2 (
+    rno INT AUTO_INCREMENT PRIMARY KEY,
+    tno INT NOT NULL,
+    reply VARCHAR(1000) NOT NULL,
+    replyer VARCHAR(100) NOT NULL,
+    replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    gno int default 0 
+);
 ```
+
 
