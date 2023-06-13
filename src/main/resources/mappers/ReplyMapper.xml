@@ -24,6 +24,9 @@
     <insert id="insertChild">
         INSERT INTO tbl_reply2 (tno,reply,replyer,gno)
         VALUES (#{tno}, #{reply}, #{replyer}, #{gno})
+        <selectKey resultType="long" keyProperty="rno" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <!-- ReplyMapper id = selectList -->
@@ -33,6 +36,11 @@
         FROM tbl_reply2
         WHERE tno = #{tno} order by gno asc, rno asc
         limit #{pr.skip} , #{pr.size}
+    </select>
+
+    <!-- ReplyMapper id = selectOne -->
+    <select id="selectOne" resultType="my.mvc.domain.ReplyDTO">
+        SELECT * FROM tbl_reply2 WHERE rno = #{rno}
     </select>
 
 

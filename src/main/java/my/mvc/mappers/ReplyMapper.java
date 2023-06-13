@@ -3,6 +3,7 @@ package my.mvc.mappers;
 import my.mvc.domain.PageRequestDTO;
 import my.mvc.domain.ReplyDTO;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -20,4 +21,11 @@ public interface ReplyMapper {
     // 댓글 페이징
     // MyBatis Parameter 를 여러개 받을때 @Param
     List<ReplyDTO> selectList(@Param("tno") Long tno, @Param("pr") PageRequestDTO pageRequestDTO);
+
+    // 댓글 조회
+    ReplyDTO selectOne(Long rno);
+
+    // rno count
+    @Select("SELECT COUNT(rno) FROM tbl_reply2 WHERE tno = #{tno}")
+    int getTnoCount(Long tno);
 }
