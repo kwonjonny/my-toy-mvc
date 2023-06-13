@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import my.mvc.domain.PageRequestDTO;
 import my.mvc.domain.TodoDTO;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +11,6 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Random;
 
 // CRUD 를 확인하기 위한 Test class
 @Log4j2
@@ -28,10 +26,13 @@ public class TodoMapperTests {
     @Commit
     @Transactional
     public void testList() {
+        // GIVEN
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
 
+        // WHEN
         List<TodoDTO> list = todoMapper.list(pageRequestDTO);
 
+        // THEN
         list.forEach(todo -> log.info(todo));
     }
 
@@ -40,10 +41,13 @@ public class TodoMapperTests {
     @Commit
     @Transactional
     public void testListCount() {
+        // GIVEN
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
 
+        // WHEN
         long totalCount = todoMapper.listCount(pageRequestDTO);
 
+        // THEN
         log.info("==========================================");
         log.info("==========================================");
         log.info(totalCount);
@@ -58,16 +62,18 @@ public class TodoMapperTests {
     public void testInsert() {
         Assertions.assertNotNull(todoMapper, "Todo Mapper");
 
+        // GIVEN
         TodoDTO todoDTO = TodoDTO.builder()
                 .title("테스트 투두")
                 .content("Test Content")
                 .writer("user Kwon Seong Joon")
                 .dueDate("2023-06-05")
                 .build();
+        // WHEN
         int count = todoMapper.insert(todoDTO);
 
+        // THEN
         Assertions.assertEquals(count , 1);
-
         log.info("==========================================");
         log.info("==========================================");
         log.info(todoDTO.getTno());
@@ -81,7 +87,10 @@ public class TodoMapperTests {
     @Transactional
     public void testRead() {
 
+        // WHEN
         TodoDTO todo = todoMapper.read(11231L);
+
+        // THEN
         log.info("==========================================");
         log.info("==========================================");
         todo.getTno();
@@ -99,6 +108,7 @@ public class TodoMapperTests {
     @Commit
     @Transactional
     public void testDelete() {
+        // THEN
        todoMapper.delete(1);
     }
 
