@@ -1,6 +1,6 @@
 # MyToyMvc
 - 프로젝트 유형: Todo Toy Project
-- 목표: JavaScript, Thymeleaf, Spring Boot를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발
+- 목표: JavaScript, Thymeleaf, Spring Boot를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발 과 reply 댓글, 대댓글 개발 
 
 ## Spring Boot 프로젝트 설정
 
@@ -37,6 +37,9 @@
 - Todo 항목 생성, 조회, 수정, 삭제
 - 페이지네이션 지원
 - Todo 항목 필터링 및 정렬 기능
+
+- Reply 항목 생성, 조회, 수정, 삭제 
+- 댓글 과 대댓글 페이지네이션 지원 
 - Bootstrap을 이용한 반응형 웹 디자인
 
 ## 시작하기
