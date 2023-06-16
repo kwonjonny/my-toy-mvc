@@ -23,9 +23,10 @@ public class TodoServiceImpl implements TodoService{
     }
 
     // List ServiceImpl
+
+
     @Override
     public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
-
         List<TodoDTO> list = todoMapper.list(pageRequestDTO);
         long total = todoMapper.listCount(pageRequestDTO);
 
