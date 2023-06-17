@@ -32,4 +32,16 @@ public class TodoController {
         model.addAttribute("pageResponseDTO", pageResponseDTO);
     }
 
+    // get : read
+    @GetMapping("read/{tno}")
+    public String read(@PathVariable("tno") Long tno, Model model ) {
+        TodoDTO todoDTO = TodoDTO.builder()
+                .tno(tno)
+                .writer("user00")
+                .dueDate("2023-06-23")
+                .build();
+
+        model.addAttribute("todo", todoDTO);
+        return "todo/read";
+    }
 }
