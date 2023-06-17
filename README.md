@@ -84,7 +84,7 @@
 | registDate | TIMESTAMP        | Board 의 생성 날짜          |
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
 
-### reply 테이블 (`tbl_reply`)
+### Reply 테이블 (`tbl_reply`)
 | 컬럼명   | 데이터 타입     | 설명                                       |
 |----------|----------------|--------------------------------------------|
 | rno      | INT            | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
