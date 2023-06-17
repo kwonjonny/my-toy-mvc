@@ -1,6 +1,6 @@
 # 개발 상태 : [개발중]
 
-# MyToyMvc
+# mytoymvc
 - 프로젝트 유형: Board Toy Project
 - 목표: JavaScript, Thymeleaf, Spring Boot 를 활용하여 페이지네이션 기능이 포함된 Board 애플리케이션 개발
 - 목표: 개발의 순서 정립 DataBase 설계 
