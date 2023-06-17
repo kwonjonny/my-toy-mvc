@@ -86,12 +86,12 @@
 
 | 컬럼명   | 데이터 타입     | 설명                                       |
 |----------|----------------|--------------------------------------------|
-| tno      | INT            | Todo 항목의 고유 식별자 (Primary Key, 자동 증가) |
-| title    | VARCHAR(500)   | Todo 항목의 제목 (null이 아님)                |
-| content  | VARCHAR(1000)  | Todo 항목의 상세 내용 (null이 아님)           |
-| writer   | VARCHAR(100)   | Todo 항목을 생성한 사용자명 (null이 아님)     |
-| complete | TINYINT        | Todo 항목의 상태 (기본값 0, 완료 시 1)          |
-| dueDate  | DATE           | Todo 항목의 마감 날짜                        |
+| tno      | INT            | Board 항목의 고유 식별자 (Primary Key, 자동 증가) |
+| title    | VARCHAR(500)   | Board 항목의 제목 (null이 아님)                |
+| content  | VARCHAR(1000)  | Board 항목의 상세 내용 (null이 아님)           |
+| writer   | VARCHAR(100)   | Board 항목을 생성한 사용자명 (null이 아님)     |
+| registDate | TIMESTAMP        | Board 의 생성 날짜          |
+| updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
 
 ### Todo 테이블 (`tbl_reply2`)
 | 컬럼명   | 데이터 타입     | 설명                                       |
@@ -109,14 +109,16 @@
 
 SQL 스키마:
 ```sql
-CREATE TABLE tbl_todo(
-    tno INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(500) NOT NULL,
-    content VARCHAR(1000) NOT NULL,
-    writer VARCHAR(100) NOT NULL,
-    complete TINYINT DEFAULT 0,
-    dueDate DATE
-);
+
+CREATE TABLE tbl_board (
+	tno INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(500) NOT NULL,
+	content VARCHAR(1000) NOT NULL,
+	writer VARCHAR(100) NOT NULL,
+	registDate TIMESTAMP default NOW(),
+	updateDate TIMESTAMP default NOW()
+)
+;
 
 CREATE TABLE tbl_reply2 (
     rno INT AUTO_INCREMENT PRIMARY KEY,
@@ -125,7 +127,8 @@ CREATE TABLE tbl_reply2 (
     replyer VARCHAR(100) NOT NULL,
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     gno int default 0 
-);
+)
+;
 ```
 
 
