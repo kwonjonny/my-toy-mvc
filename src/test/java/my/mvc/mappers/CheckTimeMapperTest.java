@@ -20,6 +20,6 @@ public class CheckTimeMapperTest {
     @Commit
     @Transactional
     public void checkTimeTest() {
-        checkTimeMapper.getTime();
+        log.info(checkTimeMapper.getTime());
     }
 }

@@ -2,178 +2,138 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout.html}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Board List Page</title>
+    <title>Title</title>
 </head>
 <body>
+  <div layout:fragment="content">
+    <h1>boardTable List Page</h1>
+    <div class="card">
+      <div class="card-header">
+      </div>
+        <div class="card-body">
 
-<!-- layout start -->
-<div layout:fragment="content">
-    <h1>ListPage</h1>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">ListPage</h5>
+               <!-- searchType start -->
+               <div class="input-group mb-3">
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">작성자</a></li>
+                  <li><a class="dropdown-item" href="#">제목</a></li>
+                  <li><a class="dropdown-item" href="#">내용</a></li>
+                </ul>
+                <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                <button type="button" class="btn btn-outline-secondary">Search</button>
+              </div>
+              <!-- searchType end -->
 
-                    <!-- 검색 조건 start -->
-                    <div class="input-group mb-3">
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">작성자</a></li>
-                            <li><a class="dropdown-item" href="#">제목</a></li>
-                            <li><a class="dropdown-item" href="#">내용</a></li>
-                        </ul>
-                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-                        <button type="button" class="btn btn-outline-secondary">Search</button>
-                    </div>
-                    <!-- 검색 조건 end -->
+        <table class="table table-bordered boardTable">
+          <thead>
+          <tr>
+            <th>tno</th>
+            <th>title</th>
+            <th>writer</th>
+            <th>craeteDate</th>
+            <th>updateDate</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="board :${pageResponseDTO.list}">
+            <td class="boardDTO" th:data-tno="${board.tno}">[[${board.tno}]]</td>
+            <td>[[${board.title}]]</td>
+            <td>[[${board.writer}]]</td>
+            <td>[[${board.registDate}]]</td>
+            <td>[[${board.updateDate}]]</td>
+          </tr>
 
-                    <!-- list table start -->
-                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered boardTable" >
-                            <thead>
-                            <tr>
-                                <th>tno</th>
-                                <th>title</th>
-                                <th>writer</th>
-                                <th>createDate</th>
-                                <th>updateDate</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="board :${pageList.list}">
-                                <td>[[${board.tno}]]</td>
-                                <td>[[${board.title}]]</td>
-                                <td>[[${board.writer}]]</td>
-                                <td>[[${board.registDate}]]</td>
-                                <td>[[${board.updateDate}]]</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- list table end -->
+          </tbody>
+        </table>
+      </div>
 
-                    <!-- actionForm JavaScript 이벤트 처리 다방면 활용 start-->
-                    <div class="border-top">
-                        <div class="card-body">
-                            <form class ="actionForm" action = "/board/list" method = "get">
-                                <input type="text" class="pageHidden" name="page" th:value = "${pageRequestDTO.page}">
-                                <!-- 어느 페이지를 가든 size는 유지  -->
-                                <input type="text" name="size" th:value = "${pageRequestDTO.size}">
-                                <!-- keyword -->
-                                <!-- SearchType 1페이지로 가야 함 -->
-                                <button type="button" class="btn btn-primary registButton">
-                                    글쓰기
-                                </button>
-                            </form>
-                        </div>
-                     <div>
-
-                     <!-- actionForm JavaScript 이벤트 처리 다방면 활용 end -->
-
-                            <!-- 페이징 start -->
-                            <ul class="pagination boardUl">
-                                <li class="page-item"><a class="page-link" href="1">이전</a></li>
-                                <li class="page-item"><a class="page-link" href="2">1</a></li>
-                                <li class="page-item"><a class="page-link" href="3">2</a></li>
-                                <li class="page-item"><a class="page-link" href="4">3</a></li>
-                                <li class="page-item"><a class="page-link" href="5">이후</a></li>
-                            </ul>
-                            <!-- 페이징 end -->
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <script src="/js/pageUtil.js"></script>
-
+      <!-- /.card-body -->
+      <div class="card-footer clearfix">
+        <ul class="pagination boardUl">
+          <li class="page-item"><a class="page-link" href="10">&laquo;</a></li>
+          <li class="page-item"><a class="page-link" href="11">11</a></li>
+          <li class="page-item"><a class="page-link" href="12">12</a></li>
+          <li class="page-item"><a class="page-link" href="13">13</a></li>
+          <li class="page-item"><a class="page-link" href="21">&raquo;</a></li>
+        </ul>
+      </div>
     </div>
-    <!-- html end  -->
+    <!-- /.card -->
 
-<script layout:fragment ="script" th:inline="javascript">
+    <form class ="actionForm" action = "/board/list" method = "get">
+      
+      <input type="hidden" name="page" th:value = "${pageRequestDTO.page}">
+      <!-- 어느 페이지를 가든 size는 유지  -->
+      <input type="hidden" name="size" th:value = "${pageRequestDTO.size}">
+      <!-- keyword -->
+      <!-- SearchType 1페이지로 가야 함 -->
+    </form>
 
-      // 태그 객체 가져오기
-        const actionForm = document.querySelector(".actionForm");
-        const boardUL = document.querySelector(".boardUL");
-        const pageNum = document.querySelector(".pageHidden");
-        const button2 = document.querySelector(".registButton")
+    
+  <script src = "/js/pageUtil.js">
+  </script>
 
-        // list 내용물의 click event
-        boardUL.addEventListener("click", (e) => { // ul 클릭
+  </div>
 
-            // 설정
-            e.preventDefault()
-            e.stopPropagation()
+  <script layout:fragment ="script" th:inline = "javascript">
 
-            const target = e.target // 클릭한 대상
-            const href = target.getAttribute("href") // 클릭한 객체의 href를 가져옴
+    const actionForm = document.querySelector(".actionForm")
+    const pageObj = actionForm.querySelector("input[name='page']") // input 태그에 name이 page인 값을 찾음
+    const boardUl = document.querySelector(".boardUl")
 
-            console.log("target", target)
+    boardUl.addEventListener("click",(e) => {
 
+      // 이벤트 시 필수
+      e.preventDefault()
+      e.stopPropagation()
 
-            console.log(href);
+      const target = e.target
+      const pageNum = target.getAttribute("href")
 
-            console.log(pageNum);
+      pageObj.value = pageNum
+      actionForm.setAttribute("action", `/board/list`)
+      actionForm.submit()
 
-            pageNum.value = href // 그 값을 form input에 적용
-            actionForm.setAttribute("action", `/board/list`) // 그리고 action을 갱신
+      console.log(e)
 
-            // console.log(actionForm, BoardUL, pageNum);
-            actionForm.submit() // 제출
-        }, false)
+    }, false)// 캡쳐링 금지
 
+    const{page,size} = [[${pageRequestDTO}]]
 
-        const {page, size} = [[${pageRequestDTO}]]
-        const {total} =  [[${pageResponseDTO}]]
+    const{total} = [[${pageResponseDTO}]]
 
-        // console.log(page, size, total);
+    
+    const pageLiStr = makePages(page,size,total)
+    boardUl.innerHTML = pageLiStr
 
-        const resasdasd = makeList(page, size, total);
+    // boardTable 에 event 를 걸고 data-tno 로 tno 의 data를 건내준다 
+    const boardTable = document.querySelector(".boardTable")
+    boardTable.addEventListener("click",(e)=>{
+      
+      const target = e.target
 
-        console.log(resasdasd)
+      if(!target.getAttribute("data-tno")){
+        return
+      }
 
-        boardUL.innerHTML = resasdasd;
+      const tno = target.getAttribute("data-tno")
 
-        const boardTable = document.querySelector(".boardTable")
-        boardTable.addEventListener("click", (e) => {
+      console.log("TNO : " + tno)
 
-            // 설정
-            e.preventDefault()
-            e.stopPropagation()
+      actionForm.setAttribute("action",`/board/read/${tno}`)
 
-            console.log(boardTable);
+      actionForm.submit()
 
-            const target = e.target
-
-            if(!target.getAttribute("data-tno")) {
-                return
-            }
-
-            const tno = target.getAttribute("data-tno")
-
-            console.log("TNO :::::::" + tno)
-
-            actionForm.setAttribute("action", `/board/read/${tno}`)
-            actionForm.submit()
-        }, false)
-
+    },false)
 
 
-
-        button2.addEventListener("click", (e) => {
-            actionForm.setAttribute("action", `/board/regist`)
-            actionForm.setAttribute("method", `get`)
-            actionForm.submit();
-        })
-    </script>
-
+  </script>
 
 </body>
 </html>

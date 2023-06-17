@@ -43,7 +43,7 @@ public class PageRequestDTO {
 
     // 한번에 가져오는 list 101
     public int getCountEnd() {
-        int temp = (int) (Math.ceil(this.page/10) * (10*size));
+        int temp = (int) (Math.ceil(this.page / 10.0) * (10 * size));
         return temp + 1;
     }
 }

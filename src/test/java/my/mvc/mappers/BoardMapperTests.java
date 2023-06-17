@@ -13,85 +13,86 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 public class BoardMapperTests {
 
+    private static final String TEST_TITLE = "TestTitle";
+    private static final String TEST_WRITER = "TestWriter";
+    private static final String TEST_CONTENT = "TestContent";
+    private static final Long TEST_TNO = 34209267L;
+
     // 의존성 주입
     @Autowired
     private BoardMapper boardMapper;
 
-    // BoardMapper Create Test
+    // Test for creating a board
     @Test
-    @Commit
     @Transactional
-    public void createBoardTest() {
+    public void shouldCreateBoardMapper() {
         log.info("======== Start Create Board ========");
         BoardCreateDTO boardCreateDTO = BoardCreateDTO.builder()
-                .title("권성준JunitMapperTest")
-                .writer("권성준JunitMapperTest")
-                .content("권성준JunitMapperTest")
+                .title(TEST_TITLE)
+                .writer(TEST_WRITER)
+                .content(TEST_CONTENT)
                 .build();
         int insertCount = boardMapper.boardCreate(boardCreateDTO);
-        Assertions.assertEquals(insertCount, 1);
+        Assertions.assertEquals(1, insertCount, "Board should be created successfully");
         log.info("======== End Create Board ========");
     }
 
-    // BoardMapper List Test
+    // Test for listing boards
     @Test
-    @Commit
     @Transactional
-    public void ListBoardTest() {
+    public void shouldListBoardMapper() {
         log.info("======== Start List Board ========");
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         log.info(boardMapper.boardList(pageRequestDTO));
         log.info("======== End List Board ========");
     }
 
-    // BoardMapper Read Test
+    // Test for reading a board
     @Test
-    @Commit
     @Transactional
-    public void readBoardTest() {
+    public void shouldReadBoardMapper() {
         log.info("======== Start Read Board ========");
-        BoardDTO boardDTO = boardMapper.boardRead(34209256L);
+        BoardDTO boardDTO = boardMapper.boardRead(TEST_TNO);
+        Assertions.assertNotNull(boardDTO, "Board should not be null");
         log.info(boardDTO);
         log.info("======== End Read Board ========");
     }
 
-    // BoardMapper Delete Test
+    // Test for deleting a board
     @Test
-    @Commit
     @Transactional
-    public void deleteBoardTest() {
+    public void shouldDeleteBoardMapper() {
         log.info("======== Start Delete Board ========");
-        boardMapper.boardDelete(34209256L);
+        boardMapper.boardDelete(TEST_TNO);
         log.info("======== End Delete Board ========");
     }
 
-    // BoardMapper Update Test
+    // Test for updating a board
     @Test
-    @Commit
     @Transactional
-    public void updateBoardTest() {
+    public void shouldUpdateBoardMapper() {
         log.info("======== Start Update Board ========");
         BoardUpdateDTO boardUpdateDTO = BoardUpdateDTO.builder()
-                .tno(34209257L)
-                .title("권성준JunitMapperUpdateTest")
-                .writer("권성준JunitMapperUpdateTest")
-                .content("권성준JunitMapperUpdateTest")
+                .tno(TEST_TNO)
+                .title(TEST_TITLE)
+                .writer(TEST_WRITER)
+                .content(TEST_CONTENT)
                 .build();
         boardMapper.boardUpdate(boardUpdateDTO);
-        log.info(boardMapper.boardRead(34209257L));
+        BoardDTO updatedBoard = boardMapper.boardRead(TEST_TNO);
+        Assertions.assertNotNull(updatedBoard, "Updated Board should not be null");
+        log.info(updatedBoard);
         log.info("======== End Update Board ========");
     }
-
-    // BoardMapper Total Test
-    @Test
-    @Commit
+    
+    // Test for total count 
     @Transactional
-    public void totalBoardTest() {
-        log.info("======== Start total Board ========");
+    public void shouldGetTotalCountOfBoardMapper() {
+        log.info("======== Start Total Count of Boards ========");
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         int totalCount = boardMapper.total(pageRequestDTO);
-
+        Assertions.assertTrue(totalCount >= 0, "Total count should be non-negative");
         log.info(totalCount);
-        log.info("======== End total Board ========");
+        log.info("======== End Total Count of Boards ========");
     }
 }

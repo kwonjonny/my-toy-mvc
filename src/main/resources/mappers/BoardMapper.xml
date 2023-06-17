@@ -47,14 +47,15 @@
         updateDate = now()
         WHERE tno = #{tno}
     </update>
+    
 
 
     <!-- BoardMapper id = total -->
-    <select id="total">
+    <select id="total" resultType="int">
         SELECT COUNT(*)
         FROM ( SELECT tno from tbl_board
         WHERE tno > 0
-        LIMIT #{countEnd} ) as tbl_board
+        LIMIT #{countEnd} ) tbl_board
     </select>
 
 

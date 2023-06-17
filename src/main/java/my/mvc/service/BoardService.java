@@ -2,8 +2,6 @@ package my.mvc.service;
 
 import my.mvc.dto.*;
 
-import java.util.List;
-
 public interface BoardService {
 
     // BoardService Create Board
