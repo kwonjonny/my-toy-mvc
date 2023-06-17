@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatis connection 확인을 위한 timeCheck -->
+<mapper namespace="my.mvc.mappers.BoardMapper">
+
+
+    <!-- BoardMapper id = boardCreate -->
+    <insert id="boardCreate" parameterType="my.mvc.dto.BoardCreateDTO">
+        INSERT INTO tbl_board (title, writer, content)
+        VALUES(#{title}, #{writer}, #{content})
+        <!-- last insert id 확인 -->
+        <selectKey resultType="long" keyProperty="tno" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+    <!-- BoardMapper id = boardList -->
+    <select id="boardList" resultType="my.mvc.dto.BoardDTO" parameterType="my.mvc.dto.BoardDTO">
+        SELECT * FROM tbl_board
+        WHERE tno > 0
+        ORDER BY tno DESC
+        LIMIT #{skip}, #{size}
+    </select>
+
+
+    <!-- BoardMapper id = boardRead -->
+    <select id="boardRead" parameterType="long" resultType="my.mvc.dto.BoardDTO">
+        SELECT * FROM tbl_board
+        WHERE tno = #{tno}
+    </select>
+
+
+    <!-- BoardMapper id = boardDelete -->
+    <delete id="boardDelete" parameterType="long">
+        DELETE FROM tbl_board
+        WHERE tno = #{tno}
+    </delete>
+
+
+    <!-- BoardMapper id = boardUpdate -->
+    <update id="boardUpdate" parameterType="my.mvc.dto.BoardUpdateDTO">
+        UPDATE tbl_board SET title=#{title}, content=#{content}, writer=#{writer},
+        updateDate = now()
+        WHERE tno = #{tno}
+    </update>
+
+
+    <!-- BoardMapper id = total -->
+    <select id="total">
+        SELECT COUNT(*)
+        FROM ( SELECT tno from tbl_board
+        WHERE tno > 0
+        LIMIT #{countEnd} ) as tbl_board
+    </select>
+
+
+</mapper>

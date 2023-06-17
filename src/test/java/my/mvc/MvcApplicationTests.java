@@ -12,26 +12,18 @@ import java.sql.Connection;
 @SpringBootTest
 class MvcApplicationTests {
 
+	// 의존성 주입
 	@Autowired
 	private DataSource dataSource;
 
+	// dataBase 연결 확인을 위한 Test
 	@Test
-	void contextLoads() {
-	}
-
-	// ConnectionTest
-	@Test
-	public void connectionTest() {
+	public void dbConnectionTest() {
 		try(Connection connection = dataSource.getConnection()) {
-			log.info("==============================");
-			log.info("==============================");
-			log.info("connection" + connection);
-			log.info("==============================");
-			log.info("==============================");
+		log.info("======================= Yes Connection Ok =======================");
 		} catch (Exception e) {
+		log.info("====================== No Connection NOT Ok ======================");
 			e.printStackTrace();
 		}
 	}
-
-
 }
