@@ -58,7 +58,7 @@
 2. 프로젝트 디렉토리로 이동합니다: `cd MyToyMvc`
 3. 프로젝트를 빌드합니다: `./gradlew build`
 4. 애플리케이션을 실행합니다: `./gradlew bootRun`
-5. 웹 브라우저에서 애플리케이션에 접속합니다: `http://localhost:8080/todo/list`
+5. 웹 브라우저에서 애플리케이션에 접속합니다: `http://localhost:8084/board/list`
 
 ## 부트스트랩 사용
 이 프로젝트는 부트스트랩 템플릿을 사용하여 사용자 인터페이스를 구성합니다. 템플릿에 대한 자세한 정보는 [AdminLTE](https://adminlte.io/)를 참조하세요.
