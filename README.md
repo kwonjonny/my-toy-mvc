@@ -27,7 +27,7 @@
 ## 프로젝트 사용 방법
 1. 프로젝트를 빌드합니다.
 2. Run Application을 실행합니다.
-3. 웹 브라우저에서 `/todo/list`로 이동합니다.
+3. 웹 브라우저에서 `/board/list`로 이동합니다.
 
 ## 부트스트랩 사용
 - [AdminLTE](https://adminlte.io/) 템플릿을 사용합니다.
