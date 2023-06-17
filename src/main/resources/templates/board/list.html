@@ -1,12 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
 <head>
     <meta charset="UTF-8">
     <title>Board List Page</title>
 </head>
 <body>
 
-<h1>BoardListPage</h1>
+<!-- layout start -->
+<div layout:fragment="content">
+    <h1>ListPage</h1>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ListPage</h5>
+
+                    <!-- 검색 조건 start -->
+                    <div class="input-group mb-3">
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">작성자</a></li>
+                            <li><a class="dropdown-item" href="#">제목</a></li>
+                            <li><a class="dropdown-item" href="#">내용</a></li>
+                        </ul>
+                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+                        <button type="button" class="btn btn-outline-secondary">Search</button>
+                    </div>
+                    <!-- 검색 조건 end -->
+
+                    <!-- list table start -->
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered boardTable" >
+                            <thead>
+                            <tr>
+                                <th>tno</th>
+                                <th>title</th>
+                                <th>writer</th>
+                                <th>createDate</th>
+                                <th>updateDate</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="board :${pageList.list}">
+                                <td>[[${board.tno}]]</td>
+                                <td>[[${board.title}]]</td>
+                                <td>[[${board.writer}]]</td>
+                                <td>[[${board.registDate}]]</td>
+                                <td>[[${board.updateDate}]]</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- list table end -->
+
+                    <!-- actionForm JavaScript 이벤트 처리 다방면 활용 start-->
+                    <div class="border-top">
+                        <div class="card-body">
+                            <form class ="actionForm" action = "/board/list" method = "get">
+                                <input type="text" class="pageHidden" name="page" th:value = "${pageRequestDTO.page}">
+                                <!-- 어느 페이지를 가든 size는 유지  -->
+                                <input type="text" name="size" th:value = "${pageRequestDTO.size}">
+                                <!-- keyword -->
+                                <!-- SearchType 1페이지로 가야 함 -->
+                                <button type="button" class="btn btn-primary registButton">
+                                    글쓰기
+                                </button>
+                            </form>
+                        </div>
+                     <div>
+
+                     <!-- actionForm JavaScript 이벤트 처리 다방면 활용 end -->
+
+                            <!-- 페이징 start -->
+                            <ul class="pagination boardUl">
+                                <li class="page-item"><a class="page-link" href="1">이전</a></li>
+                                <li class="page-item"><a class="page-link" href="2">1</a></li>
+                                <li class="page-item"><a class="page-link" href="3">2</a></li>
+                                <li class="page-item"><a class="page-link" href="4">3</a></li>
+                                <li class="page-item"><a class="page-link" href="5">이후</a></li>
+                            </ul>
+                            <!-- 페이징 end -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="/js/pageUtil.js"></script>
+
+    </div>
+    <!-- html end  -->
+
+<script layout:fragment ="script" th:inline="javascript">
+
+      // 태그 객체 가져오기
+        const actionForm = document.querySelector(".actionForm");
+        const boardUL = document.querySelector(".boardUL");
+        const pageNum = document.querySelector(".pageHidden");
+        const button2 = document.querySelector(".registButton")
+
+        // list 내용물의 click event
+        boardUL.addEventListener("click", (e) => { // ul 클릭
+
+            // 설정
+            e.preventDefault()
+            e.stopPropagation()
+
+            const target = e.target // 클릭한 대상
+            const href = target.getAttribute("href") // 클릭한 객체의 href를 가져옴
+
+            console.log("target", target)
+
+
+            console.log(href);
+
+            console.log(pageNum);
+
+            pageNum.value = href // 그 값을 form input에 적용
+            actionForm.setAttribute("action", `/board/list`) // 그리고 action을 갱신
+
+            // console.log(actionForm, BoardUL, pageNum);
+            actionForm.submit() // 제출
+        }, false)
+
+
+        const {page, size} = [[${pageRequestDTO}]]
+        const {total} =  [[${pageResponseDTO}]]
+
+        // console.log(page, size, total);
+
+        const resasdasd = makeList(page, size, total);
+
+        console.log(resasdasd)
+
+        boardUL.innerHTML = resasdasd;
+
+        const boardTable = document.querySelector(".boardTable")
+        boardTable.addEventListener("click", (e) => {
+
+            // 설정
+            e.preventDefault()
+            e.stopPropagation()
+
+            console.log(boardTable);
+
+            const target = e.target
+
+            if(!target.getAttribute("data-tno")) {
+                return
+            }
+
+            const tno = target.getAttribute("data-tno")
+
+            console.log("TNO :::::::" + tno)
+
+            actionForm.setAttribute("action", `/board/read/${tno}`)
+            actionForm.submit()
+        }, false)
+
+
+
+
+        button2.addEventListener("click", (e) => {
+            actionForm.setAttribute("action", `/board/regist`)
+            actionForm.setAttribute("method", `get`)
+            actionForm.submit();
+        })
+    </script>
+
 
 </body>
 </html>

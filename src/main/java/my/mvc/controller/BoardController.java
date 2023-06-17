@@ -25,8 +25,9 @@ public class BoardController {
     // GET : list
     @GetMapping("list")
     public String getBoardList(PageRequestDTO pageRequestDTO, Model model) {
-        PageResponseDTO<BoardDTO> list = boardService.boardList(pageRequestDTO);
         log.info("GET : BoardList");
+        PageResponseDTO<BoardDTO> pageList = boardService.boardList(pageRequestDTO);
+        model.addAttribute("pageList", pageList);
         return "board/list";
     }
 
