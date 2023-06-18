@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 @Log4j2
@@ -22,10 +21,10 @@ public class BoardMapperTests {
     @Autowired
     private BoardMapper boardMapper;
 
-    // Test for creating a board
+    // Mapper Create Test 
     @Test
     @Transactional
-    public void shouldCreateBoardMapper() {
+    public void createBoardMapperTest() {
         log.info("======== Start Create Board ========");
         BoardCreateDTO boardCreateDTO = BoardCreateDTO.builder()
                 .title(TEST_TITLE)
@@ -37,20 +36,20 @@ public class BoardMapperTests {
         log.info("======== End Create Board ========");
     }
 
-    // Test for listing boards
+    // Mapper List Test 
     @Test
     @Transactional
-    public void shouldListBoardMapper() {
+    public void listBoardMapperTest() {
         log.info("======== Start List Board ========");
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         log.info(boardMapper.boardList(pageRequestDTO));
         log.info("======== End List Board ========");
     }
 
-    // Test for reading a board
+    // Mapper Read Test 
     @Test
     @Transactional
-    public void shouldReadBoardMapper() {
+    public void readBoardMapperTest() {
         log.info("======== Start Read Board ========");
         BoardDTO boardDTO = boardMapper.boardRead(TEST_TNO);
         Assertions.assertNotNull(boardDTO, "Board should not be null");
@@ -58,19 +57,19 @@ public class BoardMapperTests {
         log.info("======== End Read Board ========");
     }
 
-    // Test for deleting a board
+    // Mapper Delete Test 
     @Test
     @Transactional
-    public void shouldDeleteBoardMapper() {
+    public void deleteBoardMapperTest() {
         log.info("======== Start Delete Board ========");
         boardMapper.boardDelete(TEST_TNO);
         log.info("======== End Delete Board ========");
     }
 
-    // Test for updating a board
+    // Mapper Update Test 
     @Test
     @Transactional
-    public void shouldUpdateBoardMapper() {
+    public void updateBoardMapperTest() {
         log.info("======== Start Update Board ========");
         BoardUpdateDTO boardUpdateDTO = BoardUpdateDTO.builder()
                 .tno(TEST_TNO)
@@ -86,6 +85,7 @@ public class BoardMapperTests {
     }
     
     // Test for total count 
+    @Test
     @Transactional
     public void shouldGetTotalCountOfBoardMapper() {
         log.info("======== Start Total Count of Boards ========");

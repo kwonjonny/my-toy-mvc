@@ -17,7 +17,6 @@ public class CheckTimeMapperTest {
 
     // MyBatis connection 확인을 위한 timeCheck
     @Test
-    @Commit
     @Transactional
     public void checkTimeTest() {
         log.info(checkTimeMapper.getTime());

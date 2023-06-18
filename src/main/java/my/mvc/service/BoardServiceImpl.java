@@ -18,11 +18,13 @@ public class BoardServiceImpl implements BoardService {
         this.boardMapper = boardMapper;
     }
 
+    
     // BoardServiceImpl Create Board
     @Override
     public int boardCreate(BoardCreateDTO boardCreateDTO) {
         return boardMapper.boardCreate(boardCreateDTO);
     }
+
 
     // BoardServiceImpl List Board
     @Override
@@ -35,17 +37,20 @@ public class BoardServiceImpl implements BoardService {
                 .build();
     }
 
+
     // BoardServiceImpl Read Board
     @Override
     public BoardDTO boardRead(Long tno) {
         return boardMapper.boardRead(tno);
     }
 
+
     // BoardServiceImpl Delete Board
     @Override
     public int boardDelete(Long tno) {
         return boardMapper.boardDelete(tno);
     }
+
 
     // BoardServiceImpl Update Board
     @Override

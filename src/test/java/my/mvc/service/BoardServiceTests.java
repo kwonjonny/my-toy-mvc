@@ -21,7 +21,7 @@ public class BoardServiceTests {
     private static final String TEST_TITLE = "JunitServiceTest";
     private static final String TEST_WRITER = "JunitServiceTest";
     private static final String TEST_CONTENT = "JunitServiceTest";
-    private static final long TEST_TNO = 34209259L;
+    private static final long TEST_TNO = 34209267L;
 
     private BoardCreateDTO boardCreateDTO;
 
@@ -46,6 +46,7 @@ public class BoardServiceTests {
 
     // BoardService List Test
     @Test
+    @Transactional
     public void listBoardServiceTest() {
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         PageResponseDTO<BoardDTO> list = boardService.boardList(pageRequestDTO);

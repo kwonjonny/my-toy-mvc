@@ -31,12 +31,14 @@ public class BoardController {
         return "board/list";
     }
 
+
     // GET : create
     @GetMapping("create")
     public String getBoardCreate() {
         log.info("GET : BoardCreate");
         return  "board/create";
     }
+
 
     // GET : read
     @GetMapping("read/{tno}")
@@ -47,6 +49,7 @@ public class BoardController {
         return "board/read";
     }
 
+
     // GET : update
     @GetMapping("update/{tno}")
     public String getBoardUpdate(@PathVariable("tno") long tno , Model model) {
@@ -56,6 +59,7 @@ public class BoardController {
         return "board/update";
     }
 
+
     // Post : create
     @PostMapping("create")
     public String postBoardCreate(BoardCreateDTO boardCreateDTO) {
@@ -63,6 +67,7 @@ public class BoardController {
         boardService.boardCreate(boardCreateDTO);
         return "redirect:/board/list";
     }
+
 
     // Post : delete
     @PostMapping("delete/{tno}")
@@ -72,6 +77,7 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    
     // Post : update
     @PostMapping("update")
     public String postBoardUpdate(BoardUpdateDTO boardUpdateDTO) {
