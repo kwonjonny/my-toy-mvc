@@ -1,8 +1,8 @@
 # 개발 상태 : [개발중]
 
-# MyToyMvc
-- 프로젝트 유형: Todo Toy Project
-- 목표: JavaScript, Thymeleaf, Spring Boot, Ajax 를 활용하여 페이지네이션 기능이 포함된 Todo 애플리케이션 개발 과 reply 댓글, 대댓글 개발 
+# mytoymvc
+- 프로젝트 유형: Board Toy Project
+- 목표: JavaScript, Thymeleaf, Spring Boot 를 활용하여 페이지네이션 기능이 포함된 Board 애플리케이션 개발
 - 목표: 개발의 순서 정립 DataBase 설계 
 - 목표: 개발의 순서 정립 MapperInterface 개발 => Mapper.xml 개발 => MapperTestCode 작성 => ServiceInterface 개발 => ServiceImpl 개발 => ServiceTestCode 작성 
 
@@ -27,23 +27,20 @@
 ## 프로젝트 사용 방법
 1. 프로젝트를 빌드합니다.
 2. Run Application을 실행합니다.
-3. 웹 브라우저에서 `/todo/list`로 이동합니다.
+3. 웹 브라우저에서 `/board/list`로 이동합니다.
 
 ## 부트스트랩 사용
 - [AdminLTE](https://adminlte.io/) 템플릿을 사용합니다.
 
-## MyToyMvc: Todo Toy Project 소개 
+## MyToyMvc: Board Toy Project 소개 
 - 데이터 규모 
-- 이 토이 프로젝트에서는 약 400만건의 데이터를 사용하여 페이지네이션 기능을 테스트하고 최적화하였습니다. 
+- 이 토이 프로젝트에서는 약 3000만건의 데이터를 사용하여 페이지네이션 기능을 테스트하고 최적화하였습니다. 
 - 이를 통해 대규모 데이터셋에 대해 어플리케이션의 성능을 측정하고, 사용자에게 빠른 응답 시간을 제공하는 방법을 연구하였습니다.
 
 ### 주요 기능
-- Todo 항목 생성, 조회, 수정, 삭제
+- Board 항목 생성, 조회, 수정, 삭제
 - 페이지네이션 지원
-- Todo 항목 필터링 및 정렬 기능
-
-- Reply 항목 생성, 조회, 수정, 삭제 
-- 댓글 과 대댓글 페이지네이션 지원 
+- Board 항목 필터링 및 정렬 기능
 - Bootstrap을 이용한 반응형 웹 디자인
 
 ## 시작하기
@@ -61,39 +58,33 @@
 2. 프로젝트 디렉토리로 이동합니다: `cd MyToyMvc`
 3. 프로젝트를 빌드합니다: `./gradlew build`
 4. 애플리케이션을 실행합니다: `./gradlew bootRun`
-5. 웹 브라우저에서 애플리케이션에 접속합니다: `http://localhost:8080/todo/list`
+5. 웹 브라우저에서 애플리케이션에 접속합니다: `http://localhost:8084/board/list`
 
 ## 부트스트랩 사용
 이 프로젝트는 부트스트랩 템플릿을 사용하여 사용자 인터페이스를 구성합니다. 템플릿에 대한 자세한 정보는 [AdminLTE](https://adminlte.io/)를 참조하세요.
-
-## 지원 및 기타 문의
-프로젝트 사용 중 문제가 발생하거나 기타 문의사항이 있는 경우, GitHub 이슈 트래커를 통해 보고할 수 있습니다.
-
-## 라이선스
-이 프로젝트는 MIT 라이선스에 따라 배포됩니다. 자세한 내용은 `LICENSE` 파일을 참조하세요.
 
 ## 개발자 정보
 - 이름: [권성준]
 - 이메일: [thistrik@gmail.com]
 - 이메일: [thistrik@naver.com]
 
-## 피드백 및 기여 
+## 피드백 기여 및 지원 기타 문의 
 - 프로젝트에 대한 의견과 피드백은 언제나 환영합니다! 만약 프로젝트에 대한 개선 사항이나 버그 제보, 그 외 다른 의견이 있으시면, 언제든지 연락해주시기 바랍니다.
 
 ## 데이터베이스 테이블 정보
 
-### Todo 테이블 (`tbl_todo`)
+### Board 테이블 (`tbl_todo`)
 
 | 컬럼명   | 데이터 타입     | 설명                                       |
 |----------|----------------|--------------------------------------------|
-| tno      | INT            | Todo 항목의 고유 식별자 (Primary Key, 자동 증가) |
-| title    | VARCHAR(500)   | Todo 항목의 제목 (null이 아님)                |
-| content  | VARCHAR(1000)  | Todo 항목의 상세 내용 (null이 아님)           |
-| writer   | VARCHAR(100)   | Todo 항목을 생성한 사용자명 (null이 아님)     |
-| complete | TINYINT        | Todo 항목의 상태 (기본값 0, 완료 시 1)          |
-| dueDate  | DATE           | Todo 항목의 마감 날짜                        |
+| tno      | INT            | Board 항목의 고유 식별자 (Primary Key, 자동 증가) |
+| title    | VARCHAR(500)   | Board 항목의 제목 (null이 아님)                |
+| content  | VARCHAR(1000)  | Board 항목의 상세 내용 (null이 아님)           |
+| writer   | VARCHAR(100)   | Board 항목을 생성한 사용자명 (null이 아님)     |
+| registDate | TIMESTAMP        | Board 의 생성 날짜          |
+| updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
 
-### Todo 테이블 (`tbl_reply2`)
+### Reply 테이블 (`tbl_reply`)
 | 컬럼명   | 데이터 타입     | 설명                                       |
 |----------|----------------|--------------------------------------------|
 | rno      | INT            | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
@@ -104,28 +95,28 @@
 | gno  | int           | 그룹 번호 (기본값 0)                       |
 
 
-### Todo 테이블 (`tbl_reply2`)
-
-
 SQL 스키마:
 ```sql
-CREATE TABLE tbl_todo(
-    tno INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(500) NOT NULL,
-    content VARCHAR(1000) NOT NULL,
-    writer VARCHAR(100) NOT NULL,
-    complete TINYINT DEFAULT 0,
-    dueDate DATE
-);
 
-CREATE TABLE tbl_reply2 (
+CREATE TABLE tbl_board (
+	tno INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(500) NOT NULL,
+	content VARCHAR(1000) NOT NULL,
+	writer VARCHAR(100) NOT NULL,
+	registDate TIMESTAMP default NOW(),
+	updateDate TIMESTAMP default NOW()
+)
+;
+
+CREATE TABLE tbl_reply (
     rno INT AUTO_INCREMENT PRIMARY KEY,
     tno INT NOT NULL,
     reply VARCHAR(1000) NOT NULL,
     replyer VARCHAR(100) NOT NULL,
     replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     gno int default 0 
-);
+)
+;
 ```
 
 
