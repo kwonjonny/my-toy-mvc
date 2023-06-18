@@ -2,6 +2,8 @@ package my.mvc.service;
 
 import my.mvc.dto.*;
 import my.mvc.mappers.BoardMapper;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mysql.cj.log.Log;
@@ -14,6 +16,7 @@ public class BoardServiceImpl implements BoardService {
     // 의존성 주입
     private final BoardMapper boardMapper;
 
+    @Autowired
     public BoardServiceImpl(BoardMapper boardMapper) {
         this.boardMapper = boardMapper;
     }

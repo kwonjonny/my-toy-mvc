@@ -3,6 +3,8 @@ package my.mvc.controller;
 import lombok.extern.log4j.Log4j2;
 import my.mvc.dto.*;
 import my.mvc.service.BoardService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ public class BoardController {
     // 의존성 주입
     private final BoardService boardService;
 
+    @Autowired
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }

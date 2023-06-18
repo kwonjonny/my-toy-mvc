@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Board Read Page</title>
 </head>
 <body>
 
@@ -13,9 +13,6 @@
     <div layout:fragment="content">
         <h1>ReadPage</h1>
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Start Page Content -->
-            <!-- ============================================================== -->
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
@@ -58,14 +55,14 @@
                       </div>
                        <!-- registDate end -->
 
-                      <!-- mdofiyDate start -->
+                      <!-- updateDate start -->
                       <div class="form-group row">
                         <label for="modfiyDate" class="col-sm-3 text-end control-label col-form-label">updateDate</label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" id="modfiyDate" th:value="${boardDTO.updateDate}" readonly/>
                         </div>
                       </div>
-                      <!-- mdofiyDate end -->
+                      <!-- updateDate end -->
 
                       <!-- content start -->
                       <div class="form-group row">
@@ -186,13 +183,7 @@
             actionForm.submit();
         })
         // 게시판 delete , update , 목록 버튼 event javaScript 등록 end 
-    
-  
-      
-
-     
-     
-
+        
     </script>
     <!-- JavaScript end -->
 
