@@ -3,6 +3,7 @@ package my.mvc.mappers;
 import lombok.extern.log4j.Log4j2;
 import my.mvc.dto.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,7 @@ public class BoardMapperTests {
     // Mapper Create Test 
     @Test
     @Transactional
+    @DisplayName("게시판 글 생성 매퍼 테스트")
     public void createBoardMapperTest() {
         log.info("======== Start Create Board ========");
         BoardCreateDTO boardCreateDTO = BoardCreateDTO.builder()
@@ -39,6 +41,7 @@ public class BoardMapperTests {
     // Mapper List Test 
     @Test
     @Transactional
+    @DisplayName("게시판 리스트 매퍼 테스트")
     public void listBoardMapperTest() {
         log.info("======== Start List Board ========");
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
@@ -49,6 +52,7 @@ public class BoardMapperTests {
     // Mapper Read Test 
     @Test
     @Transactional
+    @DisplayName("게시판 글 읽기 매퍼 테스트")
     public void readBoardMapperTest() {
         log.info("======== Start Read Board ========");
         BoardDTO boardDTO = boardMapper.boardRead(TEST_TNO);
@@ -60,6 +64,7 @@ public class BoardMapperTests {
     // Mapper Delete Test 
     @Test
     @Transactional
+    @DisplayName("게시판 글 삭제 매퍼 테스트")
     public void deleteBoardMapperTest() {
         log.info("======== Start Delete Board ========");
         boardMapper.boardDelete(TEST_TNO);
@@ -69,6 +74,7 @@ public class BoardMapperTests {
     // Mapper Update Test 
     @Test
     @Transactional
+    @DisplayName("게시판 글 업데이트 매퍼 테스트")
     public void updateBoardMapperTest() {
         log.info("======== Start Update Board ========");
         BoardUpdateDTO boardUpdateDTO = BoardUpdateDTO.builder()

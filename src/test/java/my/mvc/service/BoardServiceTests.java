@@ -2,9 +2,9 @@ package my.mvc.service;
 
 import lombok.extern.log4j.Log4j2;
 import my.mvc.dto.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class BoardServiceTests {
 
+    // 의존성 주입 
     @Autowired
     private BoardService boardService;
 
@@ -37,6 +38,7 @@ public class BoardServiceTests {
     // BoardService Create Test
     @Test
     @Transactional
+    @DisplayName("게시판 글 생성 서비스 테스트")
     public void createBoardServiceTest() {
         log.info("======== Start Create Board Service ========");
         int insertCount = boardService.boardCreate(boardCreateDTO);
@@ -47,6 +49,7 @@ public class BoardServiceTests {
     // BoardService List Test
     @Test
     @Transactional
+    @DisplayName("게시판 글 리스트 서비스 테스트")
     public void listBoardServiceTest() {
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
         PageResponseDTO<BoardDTO> list = boardService.boardList(pageRequestDTO);
@@ -57,6 +60,7 @@ public class BoardServiceTests {
     // BoardService Read Test
     @Test
     @Transactional
+    @DisplayName("게시판 글 읽기 서비스 테스트")
     public void readBoardServiceTest() {
         log.info("======== Start Read Board Service ========");
         BoardDTO boardDTO = boardService.boardRead(TEST_TNO);
@@ -68,6 +72,7 @@ public class BoardServiceTests {
     // BoardService Delete Test
     @Test
     @Transactional
+    @DisplayName("게시판 글 삭제 서비스 테스트")
     public void deleteBoardServiceTest() {
         log.info("======== Start Delete Board Service ========");
         boardService.boardDelete(TEST_TNO);
@@ -79,6 +84,7 @@ public class BoardServiceTests {
     // BoardService Update Test
     @Test
     @Transactional
+    @DisplayName("게시판 글 업데이트 서비스 테스트")
     public void updateBoardServiceTest() {
         log.info("======== Start Update Board Service ========");
         BoardUpdateDTO boardUpdateDTO = BoardUpdateDTO.builder()

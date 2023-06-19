@@ -7,9 +7,68 @@
     <title>Board Create Page</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <h1>Board Create Page</h1>
-    </div>
+ <!-- fragment content start -->
+ <div layout:fragment="content">
+    <h1>RegistPage</h1>
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+
+              <!-- 등록 페이지 -->
+              <form class="form-horizontal" method="post">
+                <div class="card-body">
+                  <h4 class="card-title">등록 페이지</h4>
+                  <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-end control-label col-form-label"></label>
+                  </div>
+
+                  <!-- title -->
+                  <div class="form-group row">
+                    <label for="title" class="col-sm-3 text-end control-label col-form-label">Title</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="title" name="title" th:required = "required"/>
+                    </div>
+                  </div>
+
+                  <!-- writer -->
+                  <div class="form-group row">
+                    <label for="writer" class="col-sm-3 text-end control-label col-form-label">Writer</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="writer" name="writer" th:required = "required"/>
+                    </div>
+                  </div>
+                 
+                  <!-- content -->
+                  <div class="form-group row">
+                    <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" name="content" th:required = "required"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- button -->
+                <div class="border-top">
+                  <div class="card-body">
+                    <button type="button" class="btn btn-primary registButton">
+                      게시글 등록
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+     </div>
+     <!-- fragment content end -->
+
+     <script>
+        
+     </script>
 
 </body>
 </html>

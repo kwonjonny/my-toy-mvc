@@ -77,7 +77,7 @@
                     <!-- 수정, 삭제, 목록 버튼 -->
                     <div class="border-top">
                       <div class="card-body">
-                        <button type="button" class="btn btn-primary modifyButton">
+                        <button type="button" class="btn btn-primary updateButton">
                           게시글 수정
                         </button>
 
@@ -157,33 +157,30 @@
 
     <!-- 게시판 delete , update , 목록 버튼 event javaScript 등록 -->
     <script layout:fragment="script" th:inline="javascript">
-        const button = document.querySelector(".deleteButton");
-        const button2 = document.querySelector(".modifyButton")
-        const button3 = document.querySelector(".listButton")
-        const actionForm = document.querySelector(".form-horizontal");
-        const link = `http://localhost:8080/replies/`
+        const deleteButton = document.querySelector(".deleteButton");
+        const updateButton = document.querySelector(".updateButton")
+        const listButton = document.querySelector(".listButton")
 
         const {tno} = [[${boardDTO}]]
-        // const {page} = [[${PageRequestDTO}]]
 
-        button.addEventListener("click", (e) => {
+        deleteButton.addEventListener("click", (e) => {
             actionForm.setAttribute("action", `/board/delete/${tno}`)
             actionForm.submit();
         })
 
-        button2.addEventListener("click", (e) => {
+        updateButton.addEventListener("click", (e) => {
             actionForm.setAttribute("action", `/board/update/${tno}`)
             actionForm.setAttribute("method", `get`)
             actionForm.submit();
         })
 
-        button3.addEventListener("click", (e) => {
+        listButton.addEventListener("click", (e) => {
             actionForm.setAttribute("action", `/board/list`)
             actionForm.setAttribute("method", `get`)
             actionForm.submit();
         })
         // 게시판 delete , update , 목록 버튼 event javaScript 등록 end 
-        
+
     </script>
     <!-- JavaScript end -->
 
