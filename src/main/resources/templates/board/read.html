@@ -11,14 +11,13 @@
 
     <!-- fragment content start -->
     <div layout:fragment="content">
-        <h1>ReadPage</h1>
+        <h1>Board Read Page</h1>
         <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
-                  <form class="form-horizontal" action="/board/delete/" method="post">
                     <div class="card-body">
-                      
+                    <form class="form-horizontal actionButton">
                       <!-- tno start -->
                       <div class="form-group row">
                         <label for="tno" class="col-sm-3 text-end control-label col-form-label">Tno</label>
@@ -68,118 +67,84 @@
                       <div class="form-group row">
                         <label for="content" class="col-sm-3 text-end control-label col-form-label">Content</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control"   th:text="${boardDTO.content}" readonly></textarea>
+                          <textarea class="form-control" id="content" th:text="${boardDTO.content}" readonly></textarea>
                         </div>
                       </div>
-                    </div>
-                    <!-- content end-->
+                     </div>
+                     <!-- content end-->
 
-                    <!-- 수정, 삭제, 목록 버튼 -->
-                    <div class="border-top">
-                      <div class="card-body">
-                        <button type="button" class="btn btn-primary updateButton">
-                          게시글 수정
-                        </button>
+                     <!-- 수정, 삭제, 목록 버튼 start -->
+                    
+                      <div class="border-top">
+                        <div class="card-body">
+                          <button type="button" class="btn btn-primary updateButton">게시글 수정 page</button>
 
-                        <button type="button" class="btn btn-primary deleteButton">
-                            게시글 삭제
-                        </button>
+                          <button type="button" class="btn btn-primary deleteButton">게시글 삭제 submit</button>
 
-                        <button type="button" class="btn btn-primary listButton">
-                            return list page
-                        </button>
+                          <button type="button" class="btn btn-primary listButton">return list page</button>
+                        </div>
                       </div>
-                    </div>
-                  </form>
-                </div>      
-              </div>
-            </div>
-        </div>
-        <!-- fragment content end -->
-
-              <!-- 모달창 start -->
-              <div class="replyModal modal" tabindex="-1" role="dialog">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      
-                      <div class="modal-body">
-                          <input type="text" name ="rno" readonly>
-                          <input type="text" name ="gno" readonly>
-                          <input type="text" name="reply" value="AAAA">
-                          <input type="text" name="replyer" value= "BBB">
-      
-                      </div>
-      
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btnDelete">DELETE</button>
-                        <button type="button" class="btn btn-primary btnModify">UPDATE</button>
-                        <button type="button" class="btn btn-primary btnReturnReply">답글 달기</button>
-                        <button type="button" class="btn btn-secondary modalClose" data-dismiss="modal">ClOSE</button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-              <!-- 모달창 end -->
-
-
-              <!-- 댓글 입력창 start -->
-                <div class="card-body">
-                  <form class="form-horizontal replyAdd">
-                    <div class="row">
-
-                      <div class="form-group col-sm-8">
-                        <input class="form-control input-sm" name="registReply" id="newReplyText" type="text" placeholder="댓글 입력...">
-                      </div>
-
-                      <div class="form-group col-sm-2">
-                        <input class="form-control input-sm" name="registReplyer" id="newReplyWriter" type="text" placeholder="작성자">
-                      </div>
-
-                      <div class="form-group col-sm-2" data-tno=${tno}>
-                        <button type="button" class="btn btn-primary btn-sm btn-block replyAddBtn">
-                        <i class="fa fa-save"></i> 댓글 달기</button>
-                      </div>
-
-                    </div>	
-                  </form>	
+                    </form>
+                    <!-- 수정, 삭제, 목록 버튼 end -->
+                  </div>      
                 </div>
               </div>
-    <!-- html end -->
+          </div>
+          <!-- fragment content end -->
+          <!-- html end -->
 
 
     <!-- JavaScript start -->
-
     <!-- 게시판 delete , update , 목록 버튼 event javaScript 등록 -->
     <script layout:fragment="script" th:inline="javascript">
-        const deleteButton = document.querySelector(".deleteButton");
-        const updateButton = document.querySelector(".updateButton")
-        const listButton = document.querySelector(".listButton")
+       
+       // actionForm 등록 
+       const actionForm = document.querySelector(".actionButton");
 
-        const {tno} = [[${boardDTO}]]
+       // updateButton 등록 
+       const actionUpdate = document.querySelector(".updateButton");
 
-        deleteButton.addEventListener("click", (e) => {
-            actionForm.setAttribute("action", `/board/delete/${tno}`)
-            actionForm.submit();
-        })
+       // deleteButton 등록 
+       const actionDelete = document.querySelector(".deleteButton");
 
-        updateButton.addEventListener("click", (e) => {
-            actionForm.setAttribute("action", `/board/update/${tno}`)
-            actionForm.setAttribute("method", `get`)
-            actionForm.submit();
-        })
+       // listButton 등록 
+       const actionList = document.querySelector(".listButton");
 
-        listButton.addEventListener("click", (e) => {
-            actionForm.setAttribute("action", `/board/list`)
-            actionForm.setAttribute("method", `get`)
-            actionForm.submit();
-        })
-        // 게시판 delete , update , 목록 버튼 event javaScript 등록 end 
+       const tno = [[${boardDTO.tno}]];
+       console.log(tno);
+       
+       // actionUpdate eventlistner 등록 
+       // click 이벤트가 발생시 /board/update/{tno} 로 get 요청 
+       actionUpdate.addEventListener("click" , (e) => {
+        // 이벤트 시 필수 등록 
+        e.preventDefault();
+        e.stopPropagation();
+        actionForm.setAttribute("action", `/board/update/${tno}`)
+        actionForm.setAttribute("method", `get`)
+        actionForm.submit();
+       },false) // 캡쳐링 금지 
+
+       // actionUpdate eventlistner 등록 
+       // click 이벤트가 발생시 /board/delete/{tno} 로 get 요청 
+       actionDelete.addEventListener("click", (e) => {
+        // 이벤트 시 필수 등록 
+        e.preventDefault();
+        e.stopPropagation();
+        actionForm.setAttribute("action", `/board/delete/${tno}`)
+        actionForm.setAttribute("method", `post`)
+        actionForm.submit();
+       },false) // 캡쳐링 금지 
+
+       // actionUpdate eventlistner 등록 
+       // click 이벤트가 발생시 /board/delete/{tno} 로 get 요청
+       actionList.addEventListener("click" , (e) => {
+        // 이벤트 시 필수 등록 
+        e.preventDefault();
+        e.stopPropagation();
+        actionForm.setAttribute("action", `/board/list`)
+        actionForm.setAttribute("method", `get`)
+        actionForm.submit();
+       },false) // 캡쳐링 금지 
 
     </script>
     <!-- JavaScript end -->

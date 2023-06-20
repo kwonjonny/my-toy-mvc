@@ -20,6 +20,7 @@ public class BoardController {
     // 의존성 주입
     private final BoardService boardService;
 
+    // autowried 명시 
     @Autowired
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
@@ -83,9 +84,11 @@ public class BoardController {
     
     // Post : update
     @PostMapping("update")
-    public String postBoardUpdate(BoardUpdateDTO boardUpdateDTO) {
+    public String postBoardUpdate(BoardUpdateDTO boardDTO) {
         log.info("POST : BoardUpdate");
-        boardService.boardUpdate(boardUpdateDTO);
-        return "redirect:/board/read";
+        boardService.boardUpdate(boardDTO);
+        log.info(boardDTO.getTitle());
+        log.info(boardDTO);
+        return "redirect:/board/read/" + boardDTO.getTno();
     }
 }

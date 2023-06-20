@@ -14,6 +14,7 @@ public class BoardServiceImpl implements BoardService {
     // 의존성 주입
     private final BoardMapper boardMapper;
 
+    // autowried 명시 
     @Autowired
     public BoardServiceImpl(BoardMapper boardMapper) {
         this.boardMapper = boardMapper;

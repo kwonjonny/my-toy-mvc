@@ -65,12 +65,12 @@
     <!-- /.card -->
 
     <form class ="actionForm" action = "/board/list" method = "get">
-      
       <input type="hidden" name="page" th:value = "${pageRequestDTO.page}">
       <!-- 어느 페이지를 가든 size는 유지  -->
       <input type="hidden" name="size" th:value = "${pageRequestDTO.size}">
       <!-- keyword -->
       <!-- SearchType 1페이지로 가야 함 -->
+      <button type="button" class="btn btn-primary createButton">게시글 글쓰기</button>
     </form>
 
     
@@ -129,6 +129,21 @@
       actionForm.submit()
 
     },false)
+
+    // createButton 등록 
+    const actionCreate = document.querySelector(".createButton");
+
+    // actionCreate eventListner 등록 
+    // click 이벤트가 발생시 /board/create 로 get 요청 
+    actionCreate.addEventListener("click", (e) => {
+      // 이벤트 시 필수 등록 
+      e.preventDefault();
+      e.stopPropagation();
+      actionForm.setAttribute("action", `/board/create`)
+      actionForm.setAttribute("method", `get`)
+      actionForm.submit();
+    },false)  // 캡쳐링 금지 
+
 
 
   </script>
