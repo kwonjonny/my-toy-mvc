@@ -1,4 +1,4 @@
-# 개발 상태 : [개발중]
+# 개발 상태 : [개발완료]
 
 # mytoymvc
 - 프로젝트 유형: Board Toy Project
@@ -73,7 +73,7 @@
 
 ## 데이터베이스 테이블 정보
 
-### Board 테이블 (`tbl_todo`)
+### Board 테이블 (`tbl_board`)
 
 | 컬럼명   | 데이터 타입     | 설명                                       |
 |----------|----------------|--------------------------------------------|
@@ -83,16 +83,6 @@
 | writer   | VARCHAR(100)   | Board 항목을 생성한 사용자명 (null이 아님)     |
 | registDate | TIMESTAMP        | Board 의 생성 날짜          |
 | updateDate  | TIMESTAMP           | Board 의 업데이트 날짜                        |
-
-### Reply 테이블 (`tbl_reply`)
-| 컬럼명   | 데이터 타입     | 설명                                       |
-|----------|----------------|--------------------------------------------|
-| rno      | INT            | 답글 항목의 고유 식별자 (Primary Key, 자동 증가) |
-| tno    | VARCHAR(500)   | 관련 Todo 항목의 고유 식별자                |
-| reply  | VARCHAR(1000)  | 답글의 내용           |
-| replyer   | VARCHAR(100)   | 답글을 작성한 사용자명     |
-| replyDate | TIMESTMAP        | 답글이 작성된 날짜와 시간 (기본값은 현재 시간)          |
-| gno  | int           | 그룹 번호 (기본값 0)                       |
 
 
 SQL 스키마:
@@ -108,15 +98,6 @@ CREATE TABLE tbl_board (
 )
 ;
 
-CREATE TABLE tbl_reply (
-    rno INT AUTO_INCREMENT PRIMARY KEY,
-    tno INT NOT NULL,
-    reply VARCHAR(1000) NOT NULL,
-    replyer VARCHAR(100) NOT NULL,
-    replyDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    gno int default 0 
-)
-;
 ```
 
 
