@@ -19,7 +19,7 @@ public class BoardMapperTests {
     private static final Long TEST_TNO = 34209267L;
 
     // 의존성 주입
-    @Autowired
+    @Autowired(required = false)
     private BoardMapper boardMapper;
 
     // Mapper Create Test 

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Log4j2
 @SpringBootTest
 public class BoardServiceTests {
-
+    
     // 의존성 주입 
     @Autowired
     private BoardService boardService;
