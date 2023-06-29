@@ -87,8 +87,6 @@ public class BoardController {
     public String postBoardUpdate(BoardUpdateDTO boardDTO) {
         log.info("POST : BoardUpdate");
         boardService.boardUpdate(boardDTO);
-        log.info(boardDTO.getTitle());
-        log.info(boardDTO);
         return "redirect:/board/read/" + boardDTO.getTno();
     }
 }
